@@ -293,6 +293,15 @@
                 <div class="card-panel mt-3">
                     <div id="tablaUbicaciones"></div>
                 </div>
+                <div class="card-panel mt-3">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="mb-0">Usuarios del sistema</h4>
+                            <button class="btn btn-primary rounded-pill" onclick="window.openModal('modalNuevoUsuario')">
+                                <i class="fa-solid fa-user-plus"></i> Nuevo usuario
+                            </button>
+                    </div>
+                    <div id="tablaUsuarios"></div>
+                </div>
             </section>
         </main>
     </div>
@@ -392,6 +401,73 @@
     </div>
 </div>
 
+<!-- MODAL NUEVO USUARIO -->
+<div class="modal fade" id="modalNuevoUsuario" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Nuevo usuario</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label>Nombre de usuario *</label>
+                    <input id="nuevoUsername" class="form-control" placeholder="Ej: jperez">
+                </div>
+                <div class="mb-3">
+                    <label>Contraseña *</label>
+                    <input id="nuevoPassword" type="password" class="form-control">
+                </div>
+                <div>
+                    <label>Rol *</label>
+                    <select id="nuevoRol" class="form-select">
+                        <option value="Operario">Operario</option>
+                        <option value="Administrador">Administrador</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" onclick="window.crearUsuario()">Crear usuario</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL EDITAR USUARIO -->
+<div class="modal fade" id="modalEditarUsuario" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Editar usuario</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editUserId">
+                <div class="mb-3">
+                    <label>Usuario</label>
+                    <input id="editUsername" class="form-control" disabled>
+                </div>
+                <div class="mb-3">
+                    <label>Rol</label>
+                    <select id="editRol" class="form-select">
+                        <option value="Operario">Operario</option>
+                        <option value="Administrador">Administrador</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Nueva contraseña (opcional)</label>
+                    <input id="editPassword" type="password" class="form-control" placeholder="Dejar vacío para no cambiar">
+                    <small id="editPasswordHelp" class="text-muted d-none">Si no deseas cambiar la contraseña, déjalo vacío.</small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" onclick="window.guardarEdicionUsuario()">Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}" type="module"></script>
 </body>

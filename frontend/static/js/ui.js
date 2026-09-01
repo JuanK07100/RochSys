@@ -18,6 +18,9 @@ export function showSection(section) {
     if (section === "configuracion") {
         if (window.cargarUbicaciones) window.cargarUbicaciones();
     }
+    if (section === "configuracion") {
+        if (window.cargarUsuarios) window.cargarUsuarios();
+    }
 }
 
 export function openModal(id) {

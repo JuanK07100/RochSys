@@ -1,5 +1,13 @@
 import { login, logout } from './auth.js';
 import {
+    cargarUsuarios,
+    renderUsuarios,
+    abrirEditarUsuario,
+    guardarEdicionUsuario,
+    eliminarUsuario,
+    crearUsuario
+} from './usuarios.js';
+import {
     showSection,
     openModal,
     closeModal,
@@ -65,6 +73,12 @@ window.renderInsumos = renderInsumos;
 window.renderProductos = renderProductos;
 window.renderUbicaciones = renderUbicaciones;
 window.renderMovimientos = renderMovimientos;
+window.cargarUsuarios = cargarUsuarios;
+window.renderUsuarios = renderUsuarios;
+window.abrirEditarUsuario = abrirEditarUsuario;
+window.guardarEdicionUsuario = guardarEdicionUsuario;
+window.eliminarUsuario = eliminarUsuario;
+window.crearUsuario = crearUsuario;
 
 // Función central para recargar todo
 export async function cargarTodo() {
@@ -73,7 +87,8 @@ export async function cargarTodo() {
         cargarProductos(),
         cargarUbicaciones(),
         cargarDashboard(),
-        cargarMovimientos()
+        cargarMovimientos(),
+        cargarUsuarios()
     ]);
     cargarSelectConsumo();
     cargarSelectVerificacion();
