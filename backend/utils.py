@@ -1,9 +1,8 @@
-# backend/utils.py
 from functools import wraps
 from flask import jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from extensions import db
-from models import User, Movimiento, Ubicacion, StockInsumo, StockPT
+from backend.extensions import db
+from backend.models import User, Movimiento, Ubicacion, StockInsumo, StockPT
 
 def usuario_actual():
     uid = int(get_jwt_identity())

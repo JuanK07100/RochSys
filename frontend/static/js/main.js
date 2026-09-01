@@ -1,0 +1,92 @@
+import { login, logout } from './auth.js';
+import {
+    showSection,
+    openModal,
+    closeModal,
+    aplicarPermisos,
+    mostrarInventario,
+    llenarSelect
+} from './ui.js';
+import {
+    cargarInsumos,
+    cargarSelectConsumo,
+    cargarUbicacionesConsumo,
+    cargarSelectEntrada,
+    cargarSelectNuevaMP,
+    crearInsumo,
+    registrarEntrada,
+    registrarConsumo
+} from './insumos.js';
+import {
+    cargarProductos,
+    cargarSelectVerificacion,
+    crearProducto
+} from './productos.js';
+import {
+    cargarUbicaciones,
+    cargarSelectNuevoPT,
+    crearUbicacion
+} from './ubicaciones.js';
+import { cargarMovimientos } from './movimientos.js';
+import { cargarDashboard } from './dashboard.js';
+import { cargarAlertas } from './alertas.js';
+import { verificarPedido } from './produccion.js';
+import { renderInsumos, renderProductos, renderUbicaciones, renderMovimientos } from './render.js';
+import { getToken, getCurrentUser } from './api.js';
+
+// Exponer funciones globales para el HTML
+window.login = login;
+window.logout = logout;
+window.showSection = showSection;
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.aplicarPermisos = aplicarPermisos;
+window.mostrarInventario = mostrarInventario;
+window.llenarSelect = llenarSelect;
+window.cargarInsumos = cargarInsumos;
+window.cargarProductos = cargarProductos;
+window.cargarUbicaciones = cargarUbicaciones;
+window.cargarMovimientos = cargarMovimientos;
+window.cargarDashboard = cargarDashboard;
+window.cargarAlertas = cargarAlertas;
+window.cargarSelectConsumo = cargarSelectConsumo;
+window.cargarUbicacionesConsumo = cargarUbicacionesConsumo;
+window.cargarSelectEntrada = cargarSelectEntrada;
+window.cargarSelectNuevaMP = cargarSelectNuevaMP;
+window.cargarSelectNuevoPT = cargarSelectNuevoPT;
+window.cargarSelectVerificacion = cargarSelectVerificacion;
+window.crearInsumo = crearInsumo;
+window.registrarEntrada = registrarEntrada;
+window.registrarConsumo = registrarConsumo;
+window.crearProducto = crearProducto;
+window.crearUbicacion = crearUbicacion;
+window.verificarPedido = verificarPedido;
+window.renderInsumos = renderInsumos;
+window.renderProductos = renderProductos;
+window.renderUbicaciones = renderUbicaciones;
+window.renderMovimientos = renderMovimientos;
+
+// Función central para recargar todo
+export async function cargarTodo() {
+    await Promise.all([
+        cargarInsumos(),
+        cargarProductos(),
+        cargarUbicaciones(),
+        cargarDashboard(),
+        cargarMovimientos()
+    ]);
+    cargarSelectConsumo();
+    cargarSelectVerificacion();
+}
+window.cargarTodo = cargarTodo;
+
+// Inicialización si ya hay token
+const token = getToken();
+const currentUser = getCurrentUser();
+if (token && currentUser) {
+    document.getElementById("loginView").classList.add("d-none");
+    document.getElementById("appView").classList.remove("d-none");
+    document.getElementById("userInfo").textContent = `${currentUser.username} · ${currentUser.rol}`;
+    aplicarPermisos();
+    cargarTodo();
+}
