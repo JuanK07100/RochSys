@@ -80,6 +80,12 @@ export async function cargarTodo() {
 }
 window.cargarTodo = cargarTodo;
 
+// === NUEVO: Asignar eventos a los menús ===
+// Esto reemplaza el código que estaba en app.js
+document.querySelectorAll(".menu-item").forEach(btn => {
+    btn.addEventListener("click", () => showSection(btn.dataset.section));
+});
+
 // Inicialización si ya hay token
 const token = getToken();
 const currentUser = getCurrentUser();
