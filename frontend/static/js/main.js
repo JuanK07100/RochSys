@@ -86,13 +86,3 @@ document.querySelectorAll(".menu-item").forEach(btn => {
     btn.addEventListener("click", () => showSection(btn.dataset.section));
 });
 
-// Inicialización si ya hay token
-const token = getToken();
-const currentUser = getCurrentUser();
-if (token && currentUser) {
-    document.getElementById("loginView").classList.add("d-none");
-    document.getElementById("appView").classList.remove("d-none");
-    document.getElementById("userInfo").textContent = `${currentUser.username} · ${currentUser.rol}`;
-    aplicarPermisos();
-    cargarTodo();
-}
