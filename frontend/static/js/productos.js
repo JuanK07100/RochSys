@@ -39,4 +39,4 @@ export async function crearProducto() {
         if (window.cargarTodo) window.cargarTodo();
         alert("Producto terminado registrado.");
     }
-}C
+}
