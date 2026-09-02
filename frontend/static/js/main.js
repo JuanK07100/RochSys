@@ -1,5 +1,13 @@
 import { login, logout } from './auth.js';
 import {
+    cargarSelectProductoReceta,
+    cargarReceta,
+    agregarFilaReceta,
+    eliminarFilaReceta,
+    guardarReceta,
+    eliminarReceta
+} from './recetas.js';
+import {
     cargarUsuarios,
     renderUsuarios,
     abrirEditarUsuario,
@@ -79,6 +87,12 @@ window.abrirEditarUsuario = abrirEditarUsuario;
 window.guardarEdicionUsuario = guardarEdicionUsuario;
 window.eliminarUsuario = eliminarUsuario;
 window.crearUsuario = crearUsuario;
+window.cargarSelectProductoReceta = cargarSelectProductoReceta;
+window.cargarReceta = cargarReceta;
+window.agregarFilaReceta = agregarFilaReceta;
+window.eliminarFilaReceta = eliminarFilaReceta;
+window.guardarReceta = guardarReceta;
+window.eliminarReceta = eliminarReceta;
 
 // Función central para recargar todo
 export async function cargarTodo() {

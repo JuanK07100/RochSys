@@ -33,6 +33,9 @@ export function openModal(id) {
     if (id === "modalNuevoPT") {
         if (window.cargarSelectNuevoPT) window.cargarSelectNuevoPT();
     }
+    if (id === "modalRecetas") {
+        if (window.cargarSelectProductoReceta) window.cargarSelectProductoReceta();
+    }
     bootstrap.Modal.getOrCreateInstance(document.getElementById(id)).show();
 }
 
