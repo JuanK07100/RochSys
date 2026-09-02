@@ -17,13 +17,15 @@
         <h1>RochSis</h1>
         <p class="text-muted">Gestión de inventario</p>
 
-        <input id="username" class="form-control mb-3" placeholder="Usuario" value="">
-        <input id="password" type="password" class="form-control mb-3" placeholder="Contraseña" value="">
-        <button id="loginBtn" class="btn btn-primary w-100 btn-lg">
-            <i class="fa-solid fa-right-to-bracket"></i> Ingresar
-        </button>
+        <form id="loginForm" onsubmit="event.preventDefault(); window.login();">
+            <input id="username" class="form-control mb-3" placeholder="Usuario" autofocus>
+            <input id="password" type="password" class="form-control mb-3" placeholder="Contraseña">
+            <button type="submit" class="btn btn-primary w-100 btn-lg">
+                <i class="fa-solid fa-right-to-bracket"></i> Ingresar
+            </button>
+        </form>
+
         <div id="loginError" class="text-danger small mt-3"></div>
-        <!--<div class="demo-help">Demo: admin / 1234 · operario / 1234</div>-->
     </div>
 </div>
 
