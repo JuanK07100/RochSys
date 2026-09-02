@@ -2,7 +2,7 @@ from werkzeug.security import generate_password_hash
 from backend.extensions import db
 from backend.models import (
     User, Ubicacion, Insumo, StockInsumo,
-    ProductoTerminado, StockPT, BOM
+    ProductoTerminado, StockPT, Receta
 )
 
 def initialize():
@@ -111,13 +111,13 @@ def initialize():
     ]
     db.session.add_all(stocks_pt)
 
-    bom = [
-        BOM(producto_referencia="CAM-001", insumo_id=insumos[0].id, cantidad_necesaria=2.5),
-        BOM(producto_referencia="CAM-001", insumo_id=insumos[1].id, cantidad_necesaria=3),
-        BOM(producto_referencia="PAN-002", insumo_id=insumos[0].id, cantidad_necesaria=3),
-        BOM(producto_referencia="PAN-002", insumo_id=insumos[3].id, cantidad_necesaria=1),
+    recetas = [
+        Receta(producto_referencia="CAM-001", insumo_id=insumos[0].id, cantidad_necesaria=2.5),
+        Receta(producto_referencia="CAM-001", insumo_id=insumos[1].id, cantidad_necesaria=3),
+        Receta(producto_referencia="PAN-002", insumo_id=insumos[0].id, cantidad_necesaria=3),
+        Receta(producto_referencia="PAN-002", insumo_id=insumos[3].id, cantidad_necesaria=1),
     ]
-    db.session.add_all(bom)
+    db.session.add_all(recetas)
 
     db.session.commit()
     print("Base de datos RochSis inicializada.")

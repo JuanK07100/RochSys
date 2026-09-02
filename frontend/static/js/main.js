@@ -1,4 +1,14 @@
 import { login, logout } from './auth.js';
+import { inicializarListenersStep } from './insumos.js';
+import { showToast } from './toast.js';
+import {
+    cargarSelectProductoReceta,
+    cargarReceta,
+    agregarFilaReceta,
+    eliminarFilaReceta,
+    guardarReceta,
+    eliminarReceta
+} from './recetas.js';
 import {
     cargarUsuarios,
     renderUsuarios,
@@ -79,6 +89,13 @@ window.abrirEditarUsuario = abrirEditarUsuario;
 window.guardarEdicionUsuario = guardarEdicionUsuario;
 window.eliminarUsuario = eliminarUsuario;
 window.crearUsuario = crearUsuario;
+window.cargarSelectProductoReceta = cargarSelectProductoReceta;
+window.cargarReceta = cargarReceta;
+window.agregarFilaReceta = agregarFilaReceta;
+window.eliminarFilaReceta = eliminarFilaReceta;
+window.guardarReceta = guardarReceta;
+window.eliminarReceta = eliminarReceta;
+window.showToast = showToast;
 
 // Función central para recargar todo
 export async function cargarTodo() {
@@ -92,6 +109,7 @@ export async function cargarTodo() {
     ]);
     cargarSelectConsumo();
     cargarSelectVerificacion();
+    inicializarListenersStep();
 }
 window.cargarTodo = cargarTodo;
 
