@@ -1,4 +1,5 @@
 import { login, logout } from './auth.js';
+import { inicializarListenersStep } from './insumos.js';
 import {
     cargarSelectProductoReceta,
     cargarReceta,
@@ -106,6 +107,7 @@ export async function cargarTodo() {
     ]);
     cargarSelectConsumo();
     cargarSelectVerificacion();
+    inicializarListenersStep();
 }
 window.cargarTodo = cargarTodo;
 

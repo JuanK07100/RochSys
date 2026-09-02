@@ -198,7 +198,7 @@
                         </div>
                         <div class="col-md-4">
                             <label>Cantidad</label>
-                            <input id="consumoCantidad" type="number" min="0.01" step="0.01" class="form-control">
+                            <input id="consumoCantidad" type="number" min="0" step="0" class="form-control">
                         </div>
                         <div class="col-md-8">
                             <label>Motivo / pedido</label>
@@ -344,9 +344,9 @@
                     </div>
                     <div class="col-md-4"><label>Categoría</label><input id="mpCategoria" class="form-control" placeholder="Tela, hilo, accesorio..."></div>
                     <div class="col-md-4"><label>Proveedor</label><input id="mpProveedor" class="form-control"></div>
-                    <div class="col-md-4"><label>Cantidad inicial *</label><input id="mpCantidad" type="number" min="0" step="0.01" class="form-control"></div>
-                    <div class="col-md-4"><label>Punto de reorden</label><input id="mpReorden" type="number" min="0" step="0.01" class="form-control"></div>
-                    <div class="col-md-4"><label>Stock máximo</label><input id="mpMaximo" type="number" min="0" step="0.01" class="form-control"></div>
+                    <div class="col-md-4"><label>Cantidad inicial *</label><input id="mpCantidad" type="number" min="0" step="0" class="form-control"></div>
+                    <div class="col-md-4"><label>Punto de reorden</label><input id="mpReorden" type="number" min="0" step="0" class="form-control"></div>
+                    <div class="col-md-4"><label>Stock máximo</label><input id="mpMaximo" type="number" min="0" step="0" class="form-control"></div>
                     <div class="col-md-4"><label>Costo unitario</label><input id="mpCosto" type="number" min="0" step="0.01" class="form-control"></div>
                     <div class="col-md-8"><label>Ubicación *</label><select id="mpUbicacion" class="form-select"></select></div>
                     <div class="col-12"><label>Descripción</label><textarea id="mpDescripcion" class="form-control" rows="2"></textarea></div>
@@ -372,7 +372,7 @@
             <div class="modal-body">
                 <div class="mb-3"><label>Materia prima</label><select id="entradaInsumo" class="form-select"></select></div>
                 <div class="mb-3"><label>Ubicación</label><select id="entradaUbicacion" class="form-select"></select></div>
-                <div class="mb-3"><label>Cantidad</label><input id="entradaCantidad" type="number" min="0.01" step="0.01" class="form-control"></div>
+                <div class="mb-3"><label>Cantidad</label><input id="entradaCantidad" type="number" min="0" step="0" class="form-control"></div>
                 <div class="mb-3"><label>Referencia</label><input id="entradaReferencia" class="form-control" placeholder="Factura, remisión, OC..."></div>
                 <div><label>Motivo</label><input id="entradaMotivo" class="form-control" placeholder="Compra / recepción de proveedor"></div>
             </div>

@@ -20,7 +20,7 @@ export function showSection(section) {
     }
     if (section === "configuracion") {
         if (window.cargarUsuarios) window.cargarUsuarios();
-    }
+    }1
 }
 
 export function openModal(id) {
