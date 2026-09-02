@@ -76,6 +76,7 @@ body {
 }
 
 .menu-item {
+    position: relative;
     width: 100%;
     border: 0;
     background: transparent;
@@ -88,6 +89,25 @@ body {
 
 .menu-item i {
     width: 25px;
+}
+
+.menu-badge {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #dc3545;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
 }
 
 .menu-item:hover,

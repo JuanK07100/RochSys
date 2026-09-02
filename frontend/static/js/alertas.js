@@ -2,6 +2,8 @@ import { api } from './api.js';
 
 export async function cargarAlertas() {
     const data = await api("/api/alertas");
+    actualizarBadgeAlertas(data);
+
     const c = document.getElementById("alertasLista");
     if (!c || !data) return;
 
@@ -19,4 +21,17 @@ export async function cargarAlertas() {
             </div>
         </div>
     `).join("");
+}
+
+export function actualizarBadgeAlertas(data) {
+    const badge = document.getElementById("alertasBadge");
+    if (!badge) return;
+
+    const total = data ? data.length : 0;
+    if (total > 0) {
+        badge.textContent = total > 99 ? "99+" : total;
+        badge.classList.remove("d-none");
+    } else {
+        badge.classList.add("d-none");
+    }
 }
