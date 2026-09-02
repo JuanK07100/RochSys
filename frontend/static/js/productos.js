@@ -1,6 +1,5 @@
 import { api } from './api.js';
 import { renderProductos } from './render.js';
-import { llenarSelect } from './ui.js';
 
 let productos = [];
 
@@ -13,7 +12,11 @@ export async function cargarProductos() {
 }
 
 export function cargarSelectVerificacion() {
-    llenarSelect("verifProducto", productos, p => `${p.referencia} · ${p.nombre}`);
+    const select = document.getElementById("verifProducto");
+    if (!select) return;
+    select.innerHTML = productos
+        .map(p => `<option value="${p.referencia}">${p.referencia} · ${p.nombre}</option>`)
+        .join("");
 }
 
 export async function crearProducto() {

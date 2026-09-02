@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required
+from backend.extensions import db
 from backend.models import BOM, Insumo
 from backend.utils import stock_insumo_total
 
