@@ -215,7 +215,7 @@ export async function crearInsumo() {
         const modal = bootstrap.Modal.getInstance(document.getElementById("modalNuevaMP"));
         if (modal) modal.hide();
         if (window.cargarTodo) window.cargarTodo();
-        alert("Materia prima registrada correctamente.");
+        window.showToast("Materia prima registrada correctamente.");
     }
 }
 
@@ -229,7 +229,7 @@ export async function registrarEntrada() {
     };
 
     if (!payload.cantidad || payload.cantidad <= 0) {
-        alert("Introduce una cantidad válida.");
+        window.showToast("Introduce una cantidad válida.");
         return;
     }
 
@@ -242,7 +242,7 @@ export async function registrarEntrada() {
         const modal = bootstrap.Modal.getInstance(document.getElementById("modalEntrada"));
         if (modal) modal.hide();
         if (window.cargarTodo) window.cargarTodo();
-        alert("Entrada registrada.");
+        window.showToast("Entrada registrada.");
     }
 }
 
@@ -255,7 +255,7 @@ export async function registrarConsumo() {
     };
 
     if (!payload.cantidad || payload.cantidad <= 0) {
-        alert("Introduce una cantidad válida.");
+        window.showToast("Introduce una cantidad válida.");
         return;
     }
 
@@ -271,7 +271,9 @@ export async function registrarConsumo() {
         document.getElementById("consumoCantidad").value = "";
         document.getElementById("consumoMotivo").value = "";
         if (window.cargarTodo) window.cargarTodo();
+        window.showToast("Consumo registrado correctamente.", "success");
     } else {
         result.innerHTML = `<div class="alert alert-danger">No fue posible registrar el consumo.</div>`;
+        window.showToast("No fue posible registrar el consumo.", "error");
     }
 }

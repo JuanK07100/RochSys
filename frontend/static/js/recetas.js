@@ -121,7 +121,7 @@ function recolectarValoresActuales() {
 
 export async function guardarReceta() {
     if (!currentProductoReferencia) {
-        alert("Primero selecciona un producto y carga su receta.");
+        window.showToast("Primero selecciona un producto y carga su receta.");
         return;
     }
 
@@ -147,14 +147,14 @@ export async function guardarReceta() {
     });
 
     if (res) {
-        alert("Receta guardada correctamente.");
+        window.showToast("Receta guardada correctamente.");
         await cargarReceta();
     }
 }
 
 export async function eliminarReceta() {
     if (!currentProductoReferencia) {
-        alert("Selecciona un producto primero.");
+        window.showToast("Selecciona un producto primero.");
         return;
     }
     if (!confirm(`¿Eliminar toda la receta para ${currentProductoReferencia}?`)) {
@@ -164,7 +164,7 @@ export async function eliminarReceta() {
         method: "DELETE"
     });
     if (res) {
-        alert("Receta eliminada.");
+        window.showToast("Receta eliminada.");
         recetaItems = [];
         renderTablaReceta();
     }
