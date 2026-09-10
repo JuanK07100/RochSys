@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required
 from backend.extensions import db
-from backend.models import BOM, Insumo
+from backend.models import Receta, Insumo
 from backend.utils import stock_insumo_total
 
 produccion_bp = Blueprint('produccion', __name__, url_prefix='/api/produccion')
@@ -19,12 +19,12 @@ def verificar():
         if cantidad_pedida <= 0:
             continue
 
-        bom_items = BOM.query.filter_by(producto_referencia=referencia).all()
-        for bom in bom_items:
-            insumo = db.session.get(Insumo, bom.insumo_id)
+        receta_items = Receta.query.filter_by(producto_referencia=referencia).all()
+        for item in receta_items:
+            insumo = db.session.get(Insumo, item.insumo_id)
             if not insumo:
                 continue
-            necesario = bom.cantidad_necesaria * cantidad_pedida
+            necesario = item.cantidad_necesaria * cantidad_pedida
             if insumo.id not in resultados:
                 resultados[insumo.id] = {
                     "codigo": insumo.codigo,

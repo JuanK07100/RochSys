@@ -4,15 +4,49 @@
 
 ```text
 rochsis_mockup/
-├── app.py
-├── requirements.txt
+├── backend/
+│   ├── routes/
+│   │   ├── __init__.py
+│   │   ├── alertas.py
+│   │   ├── auth.py
+│   │   ├── dashboard.py
+│   │   ├── insumos.py
+│   │   ├── movimientos.py
+│   │   ├── produccion.py
+│   │   ├── productos.py
+│   │   ├── recetas.py
+│   │   ├── ubicaciones.py
+│   │   └── usuarios.py
+│   ├── app.py
+│   ├── config.py
+│   ├── extensions.py
+│   ├── init_db.py
+│   ├── models.py
+│   ├── routes.py
+│   └── utils.py
+├── frontend/
+│   └── static/
+│       ├── css/
+│       │   └── style.css
+│       └── js/
+│           ├── alertas.js
+│           ├── api.js
+│           ├── auth.js
+│           ├── dashboard.js
+│           ├── insumos.js
+│           ├── main.js
+│           ├── movimientos.js
+│           ├── produccion.js
+│           ├── productos.js
+│           ├── recetas.js
+│           ├── render.js
+│           ├── ubicaciones.js
+│           ├── ui.js
+│           └── usuarios.js
 ├── templates/
 │   └── index.html
-└── static/
-    ├── css/
-    │   └── style.css
-    └── js/
-        └── app.js
+├── requirements.txt
+└── README.md
 ```
 
 ## Instalación

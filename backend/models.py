@@ -58,7 +58,7 @@ class Movimiento(db.Model):
     referencia = db.Column(db.String(100), default="")
     fecha_hora = db.Column(db.DateTime, server_default=db.func.now())
 
-class BOM(db.Model):
+class Receta(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     producto_referencia = db.Column(db.String(50), nullable=False)
     insumo_id = db.Column(db.Integer, db.ForeignKey("insumo.id"), nullable=False)

@@ -33,6 +33,6 @@ export async function crearUbicacion() {
         document.getElementById("ubicNombre").value = "";
         document.getElementById("ubicDescripcion").value = "";
         await cargarUbicaciones();
-        alert("Ubicación creada.");
+        window.showToast("Ubicación creada.");
     }
 }

@@ -20,7 +20,7 @@ export function showSection(section) {
     }
     if (section === "configuracion") {
         if (window.cargarUsuarios) window.cargarUsuarios();
-    }
+    }1
 }
 
 export function openModal(id) {
@@ -32,6 +32,9 @@ export function openModal(id) {
     }
     if (id === "modalNuevoPT") {
         if (window.cargarSelectNuevoPT) window.cargarSelectNuevoPT();
+    }
+    if (id === "modalRecetas") {
+        if (window.cargarSelectProductoReceta) window.cargarSelectProductoReceta();
     }
     bootstrap.Modal.getOrCreateInstance(document.getElementById(id)).show();
 }

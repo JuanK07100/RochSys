@@ -17,13 +17,15 @@
         <h1>RochSis</h1>
         <p class="text-muted">Gestión de inventario</p>
 
-        <input id="username" class="form-control mb-3" placeholder="Usuario" value="">
-        <input id="password" type="password" class="form-control mb-3" placeholder="Contraseña" value="">
-        <button id="loginBtn" class="btn btn-primary w-100 btn-lg">
-            <i class="fa-solid fa-right-to-bracket"></i> Ingresar
-        </button>
+        <form id="loginForm" onsubmit="event.preventDefault(); window.login();">
+            <input id="username" class="form-control mb-3" placeholder="Usuario" autofocus>
+            <input id="password" type="password" class="form-control mb-3" placeholder="Contraseña">
+            <button type="submit" class="btn btn-primary w-100 btn-lg">
+                <i class="fa-solid fa-right-to-bracket"></i> Ingresar
+            </button>
+        </form>
+
         <div id="loginError" class="text-danger small mt-3"></div>
-        <!--<div class="demo-help">Demo: admin / 1234 · operario / 1234</div>-->
     </div>
 </div>
 
@@ -47,6 +49,10 @@
             <button class="menu-item" data-section="inventario">
                 <i class="fa-solid fa-boxes-stacked"></i><span>Inventario</span>
             </button>
+            <button class="menu-item" data-section="alertas">
+                <i class="fa-solid fa-bell"></i><span>Alertas</span>
+                <span id="alertasBadge" class="menu-badge d-none"></span>
+            </button>
             <button class="menu-item" data-section="registrar">
                 <i class="fa-solid fa-arrow-right-to-bracket"></i><span>Registrar</span>
             </button>
@@ -54,14 +60,10 @@
                 <i class="fa-solid fa-minus-circle"></i><span>Consumo</span>
             </button>
             <button class="menu-item" data-section="produccion">
-                <i class="fa-solid fa-industry"></i><span>Producción</span>
+                <i class="fa-solid fa-industry"></i><span>Verificacion</span>
             </button>
             <button class="menu-item" data-section="movimientos">
                 <i class="fa-solid fa-clock-rotate-left"></i><span>Movimientos</span>
-            </button>
-            <button class="menu-item" data-section="alertas">
-                <i class="fa-solid fa-bell"></i><span>Alertas</span>
-                <span id="alertasBadge" class="menu-badge d-none"></span>
             </button>
             <button class="menu-item admin-only" data-section="configuracion">
                 <i class="fa-solid fa-gear"></i><span>Configuración</span>
@@ -168,9 +170,13 @@
                         <strong>Nuevo producto terminado</strong>
                         <span>Registrar referencia y stock inicial.</span>
                     </button>
+                    <button class="action-card admin-only" onclick="openModal('modalRecetas')">
+                        <i class="fa-solid fa-receipt"></i>
+                        <strong>Recetas de producción</strong>
+                        <span>Define insumos y cantidades por producto.</span>
+                    </button>
                 </div>
             </section>
-
             <!-- CONSUMO -->
             <section id="consumo" class="section">
                 <div class="page-title">
@@ -192,7 +198,7 @@
                         </div>
                         <div class="col-md-4">
                             <label>Cantidad</label>
-                            <input id="consumoCantidad" type="number" min="0.01" step="0.01" class="form-control">
+                            <input id="consumoCantidad" type="number" min="0" step="0" class="form-control">
                         </div>
                         <div class="col-md-8">
                             <label>Motivo / pedido</label>
@@ -210,7 +216,7 @@
             <section id="produccion" class="section">
                 <div class="page-title">
                     <div>
-                        <h2>Producción</h2>
+                        <h2>Verificacion</h2>
                         <p>Comprueba si existe materia prima suficiente antes de fabricar.</p>
                     </div>
                 </div>
@@ -338,9 +344,9 @@
                     </div>
                     <div class="col-md-4"><label>Categoría</label><input id="mpCategoria" class="form-control" placeholder="Tela, hilo, accesorio..."></div>
                     <div class="col-md-4"><label>Proveedor</label><input id="mpProveedor" class="form-control"></div>
-                    <div class="col-md-4"><label>Cantidad inicial *</label><input id="mpCantidad" type="number" min="0" step="0.01" class="form-control"></div>
-                    <div class="col-md-4"><label>Punto de reorden</label><input id="mpReorden" type="number" min="0" step="0.01" class="form-control"></div>
-                    <div class="col-md-4"><label>Stock máximo</label><input id="mpMaximo" type="number" min="0" step="0.01" class="form-control"></div>
+                    <div class="col-md-4"><label>Cantidad inicial *</label><input id="mpCantidad" type="number" min="0" step="0" class="form-control"></div>
+                    <div class="col-md-4"><label>Punto de reorden</label><input id="mpReorden" type="number" min="0" step="0" class="form-control"></div>
+                    <div class="col-md-4"><label>Stock máximo</label><input id="mpMaximo" type="number" min="0" step="0" class="form-control"></div>
                     <div class="col-md-4"><label>Costo unitario</label><input id="mpCosto" type="number" min="0" step="0.01" class="form-control"></div>
                     <div class="col-md-8"><label>Ubicación *</label><select id="mpUbicacion" class="form-select"></select></div>
                     <div class="col-12"><label>Descripción</label><textarea id="mpDescripcion" class="form-control" rows="2"></textarea></div>
@@ -366,7 +372,7 @@
             <div class="modal-body">
                 <div class="mb-3"><label>Materia prima</label><select id="entradaInsumo" class="form-select"></select></div>
                 <div class="mb-3"><label>Ubicación</label><select id="entradaUbicacion" class="form-select"></select></div>
-                <div class="mb-3"><label>Cantidad</label><input id="entradaCantidad" type="number" min="0.01" step="0.01" class="form-control"></div>
+                <div class="mb-3"><label>Cantidad</label><input id="entradaCantidad" type="number" min="0" step="0" class="form-control"></div>
                 <div class="mb-3"><label>Referencia</label><input id="entradaReferencia" class="form-control" placeholder="Factura, remisión, OC..."></div>
                 <div><label>Motivo</label><input id="entradaMotivo" class="form-control" placeholder="Compra / recepción de proveedor"></div>
             </div>
@@ -469,6 +475,54 @@
         </div>
     </div>
 </div>
+<!-- MODAL RECETAS -->
+<div class="modal fade" id="modalRecetas" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Gestión de recetas por producto</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <button class="btn btn-outline-danger btn-sm me-2" onclick="window.eliminarReceta()">
+                            <i class="fa-solid fa-trash"></i> Eliminar receta
+                        </button>
+                        <button class="btn btn-success btn-sm" onclick="window.guardarReceta()">
+                            <i class="fa-solid fa-save"></i> Guardar receta
+                        </button>
+                    </div>
+                </div>
+                <p>Define qué insumos y en qué cantidad se necesitan para producir una unidad de cada producto.</p>
+
+                <div class="row g-3 align-items-end mb-3">
+                    <div class="col-md-6">
+                        <label>Producto</label>
+                        <select id="recetaProducto" class="form-select">
+                            <option value="">-- Seleccionar --</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-primary w-100" onclick="window.agregarFilaReceta()">
+                            <i class="fa-solid fa-plus"></i> Añadir insumo
+                        </button>
+                    </div>
+                </div>
+
+                <div id="tablaReceta">
+                    <div class="text-muted">Selecciona un producto para cargar su receta.</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- CONTENEDOR DE TOASTS -->
+<div id="toastContainer" class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999;"></div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}" type="module"></script>
 </body>

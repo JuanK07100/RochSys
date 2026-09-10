@@ -8,6 +8,7 @@ from .movimientos import movimientos_bp
 from .alertas import alertas_bp
 from .produccion import produccion_bp
 from .usuarios import usuarios_bp
+from .recetas import recetas_bp
 
 blueprints = [
     auth_bp,
@@ -19,6 +20,7 @@ blueprints = [
     alertas_bp,
     produccion_bp,
     usuarios_bp,
+    recetas_bp,
 ]
 
 def register_blueprints(app):

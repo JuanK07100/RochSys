@@ -37,6 +37,6 @@ export async function crearProducto() {
         const modal = bootstrap.Modal.getInstance(document.getElementById("modalNuevoPT"));
         if (modal) modal.hide();
         if (window.cargarTodo) window.cargarTodo();
-        alert("Producto terminado registrado.");
+        window.showToast("Producto terminado registrado.");
     }
 }

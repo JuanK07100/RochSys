@@ -84,7 +84,7 @@ export async function guardarEdicionUsuario() {
     if (res) {
         bootstrap.Modal.getInstance(document.getElementById("modalEditarUsuario")).hide();
         await cargarUsuarios();
-        alert("Usuario actualizado correctamente.");
+        window.showToast("Usuario actualizado correctamente.");
     }
 }
 
@@ -97,7 +97,7 @@ export async function eliminarUsuario(userId) {
 
     if (res) {
         await cargarUsuarios();
-        alert("Usuario eliminado.");
+        window.showToast("Usuario eliminado.");
     }
 }
 
@@ -109,7 +109,7 @@ export async function crearUsuario() {
     };
 
     if (!payload.username || !payload.password) {
-        alert("Usuario y contraseña son obligatorios.");
+        window.showToast("Usuario y contraseña son obligatorios.");
         return;
     }
 
@@ -121,7 +121,7 @@ export async function crearUsuario() {
     if (res) {
         bootstrap.Modal.getInstance(document.getElementById("modalNuevoUsuario")).hide();
         await cargarUsuarios();
-        alert("Usuario creado correctamente.");
+        window.showToast("Usuario creado correctamente.");
         // Limpiar campos
         document.getElementById("nuevoUsername").value = "";
         document.getElementById("nuevoPassword").value = "";
